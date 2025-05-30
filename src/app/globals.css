@@ -3,40 +3,129 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start: #e0f2fe;  /* Jasny błękitny */
+  --background-end: #f0f9ff;    /* Bardzo jasny błękitny */
+  --text-primary: #0f172a;      /* Ciemny granatowy */
+  --text-secondary: #1e40af;    /* Ciemny niebieski */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.dark {
+  --background-start: #1e3a8a;  /* Ciemny niebieski */
+  --background-end: #2563eb;    /* Jasniejszy niebieski */
+  --text-primary: #f8fafc;      /* Bardzo jasny */
+  --text-secondary: #e2e8f0;    /* Jasny */
 }
 
 body {
-  min-height: 100vh;
-  overflow-x: hidden;
+  @apply min-h-screen transition-colors duration-200;
+  background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
+  color: var(--text-primary);
 }
 
+.dark body {
+  @apply from-calm-primary to-calm-accent;
+}
+
+/* Style dla logo */
+.logo-container {
+  @apply relative rounded-2xl;
+  background: rgba(37, 99, 235, 0.9);  /* blue-600 z wysoką nieprzezroczystością */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Style dla kart w trybie jasnym */
+.exercise-card {
+  @apply p-6 rounded-2xl transition-all duration-300 backdrop-blur-sm
+         border border-blue-200 shadow-lg hover:shadow-xl;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Style dla kart w trybie ciemnym */
+.dark .exercise-card {
+  @apply border-white/10;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+/* Style dla przycisków w trybie jasnym */
+.button-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 transition-colors;
+}
+
+/* Style dla przycisków w trybie ciemnym */
+.dark .button-primary {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+/* Style dla nawigacji */
+.nav-tabs {
+  @apply bg-blue-100/80 backdrop-blur-md;
+}
+
+.dark .nav-tabs {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.nav-tab {
+  @apply px-6 py-2 rounded-lg transition-colors;
+}
+
+.nav-tab.active {
+  @apply bg-blue-600 text-white;
+}
+
+.nav-tab:not(.active) {
+  @apply text-blue-800 hover:text-blue-900;
+}
+
+.dark .nav-tab:not(.active) {
+  @apply text-blue-100 hover:text-white;
+}
+
+/* Kolory tekstu */
+.dark .text-primary {
+  @apply text-white;
+}
+
+.text-primary {
+  @apply text-blue-900;
+}
+
+.dark .text-secondary {
+  @apply text-gray-300;
+}
+
+.text-secondary {
+  @apply text-blue-800;
+}
+
+/* Animacje */
 @keyframes wave-float {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-2px, -1px);
-  }
-  50% {
-    transform: translate(0, -2px);
-  }
-  75% {
-    transform: translate(2px, -1px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, -1px); }
+  50% { transform: translate(0, -2px); }
+  75% { transform: translate(2px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-wave-float {
+  animation: wave-float 3s ease-in-out infinite;
+}
+
+/* Dodatkowe style dla komponentów w trybie ciemnym */
+.dark .overlay-dark {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark .border-subtle {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animacje przejść */
+.transition-theme {
+  @apply transition-all duration-200 ease-in-out;
 }
 
 @keyframes wave-float-delayed {
@@ -55,10 +144,6 @@ body {
   100% {
     transform: translate(0, -1px);
   }
-}
-
-.animate-wave-float {
-  animation: wave-float 3s ease-in-out infinite;
 }
 
 .animate-wave-float-delayed {

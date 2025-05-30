@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,17 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        'calm-primary': '#1a365d',
+        'calm-accent': '#2c5282',
         ocean: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          100: '#ebf8ff',
+          200: '#bee3f8',
+          300: '#90cdf4',
+          400: '#63b3ed',
+          500: '#4299e1',
+          600: '#3182ce',
+          700: '#2b6cb0',
+          800: '#2c5282',
+          900: '#2a4365',
         },
         calm: {
           primary: '#1e3a8a',    // Deep blue

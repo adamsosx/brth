@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
+import ClientProviders from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,13 +12,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-br from-sage-50 to-sage-100 min-h-screen`}>
-        {children}
+    <html lang="pl" className="dark">
+      <body className={`${inter.className} min-h-screen`}>
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );

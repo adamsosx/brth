@@ -15,7 +15,7 @@ export default function Logo({ className = '', size = 'medium' }: LogoProps) {
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`logo-container rounded-xl p-3 ${className}`}>
       <Image
         src="/images/logo.png"
         alt="brtH Logo"
